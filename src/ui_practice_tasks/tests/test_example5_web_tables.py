@@ -3,7 +3,15 @@ Task 05 — Web Tables
 URL: https://demoqa.com/webtables
 """
 
+import pytest
 
+
+# @pytest.mark.parametrize(
+#     "web_tables_page",
+# #     ["use_table_url"],
+#     ["use_base_url"],
+#     indirect=True
+# )
 def test_web_tables_add_new_user_row_appears(web_tables_page):
         first_name = "Alice"
         last_name = "Cooper"
