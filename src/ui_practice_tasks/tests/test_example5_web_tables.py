@@ -7,12 +7,15 @@ import pytest
 
 
 # @pytest.mark.parametrize(
-#     "web_tables_page",
-# #     ["use_table_url"],
+#     "base_url",
+#     #["use_table_url"],
 #     ["use_base_url"],
 #     indirect=True
 # )
 def test_web_tables_add_new_user_row_appears(web_tables_page):
+        #test_page_web_tables = web_tables_page("use_base_url")
+        test_page_web_tables = web_tables_page("use_table_url")
+
         first_name = "Alice"
         last_name = "Cooper"
         email = "alice.cooper@example.com"
@@ -20,8 +23,8 @@ def test_web_tables_add_new_user_row_appears(web_tables_page):
         salary = "45000"
         department = "QA"
 
-        web_tables_page.click_add_registration_form_button()
-        web_tables_page.fill_reg_form(
+        test_page_web_tables.click_add_registration_form_button()
+        test_page_web_tables.fill_reg_form(
                 first_name=first_name,
                 last_name=last_name,
                 email=email,
@@ -29,8 +32,8 @@ def test_web_tables_add_new_user_row_appears(web_tables_page):
                 salary=salary,
                 department=department,
         )
-        web_tables_page.click_submit_button()
+        test_page_web_tables.click_submit_button()
 
-        assert web_tables_page.is_registration_form_hidden()
-        assert web_tables_page.has_email_in_table(email)
-        assert web_tables_page.has_first_name_in_table(first_name)
+        assert test_page_web_tables.is_registration_form_hidden()
+        assert test_page_web_tables.has_email_in_table(email)
+        assert test_page_web_tables.has_first_name_in_table(first_name)

@@ -35,9 +35,8 @@ def web_tables_page(home_page):
 #     if parameter == "use_base_url":
 #         return home_page.open_web_tables_page
 #     elif parameter == "use_table_url":
-#         page.pause()
 #         page.goto(BASE_URL +  "/webtables")
-        
+
 #         return WebTablesPages(page)
 #     else:
 #         print(f"you have passed unexpected parameter velue {parameter}")

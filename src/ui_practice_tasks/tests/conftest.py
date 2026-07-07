@@ -27,11 +27,48 @@ def home_page(page):
     return HomePage(page)
 
 
+
 @pytest.fixture
-def web_tables_page(page):
-    #page.pause()
-    page.goto(BASE_URL +  "/webtables")
-    return WebTablesPages(page)
+def web_tables_page(page, home_page):
+    def _create(mode="default"):
+        if mode == "use_base_url":
+            return home_page.open_web_tables_page()
+
+        elif mode == "use_table_url":
+            page.goto(BASE_URL + "/webtables")
+            return WebTablesPages(page)
+
+        # default behavior
+        page.goto(BASE_URL + "/webtables")
+        return WebTablesPages(page)
+
+    return _create
+
+
+# @pytest.fixture
+# def web_tables_page(page, home_page, request):
+#     # Read raw parametrization value for 'base_url' if present.
+#     param = None
+#     #callspec = getattr(getattr(request, "node", None), "callspec", None)
+    
+#     if hasattr(request, "node") and hasattr(request.node, "callspec"):
+#         callspec = request.node.callspec
+#     else:
+#         callspec = None
+
+#     page.pause()
+#     if callspec:
+#         param = callspec.params.get("base_url")
+
+#     if param == "use_base_url":
+#         return home_page.open_web_tables_page()
+#     if param == "use_table_url":
+#         page.goto(BASE_URL + "/webtables")
+#         return WebTablesPages(page)
+
+#     # Default behaviour: navigate directly to the webtables URL.
+#     page.goto(BASE_URL + "/webtables")
+#     return WebTablesPages(page)
 
 
 @pytest.fixture
